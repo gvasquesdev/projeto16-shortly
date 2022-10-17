@@ -11,12 +11,19 @@ async function createUser(user) {
     const passwordHash = bcrypt.hashSync(user.password, SALT);
 
     return db.query(`INSERT INTO users (name,email,password) VALUES ($1,$2,$3)`,
-    [user.name, user.email, passwordHash])
-}
+    [user.name, user.email, passwordHash]);
+};
+
+async function getUserById(id){
+    return db.query(
+        `SELECT * FROM users WHERE id = $1`, [id]
+    );
+};
 
 const userRepository = {
     getUserByEmail,
-    createUser
+    createUser,
+    getUserById
 }
 
 export default userRepository;
