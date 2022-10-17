@@ -1,5 +1,4 @@
 import { nanoid } from "nanoid";
-import { reset } from "nodemon";
 import urlRepository from "../repositories/urlRepository.js";
 
 export async function shorten(req, res) {
